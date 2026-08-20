@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BioLingua Daily · 生物医药英语每日精读</title>
+<style>
+:root{
+  --pink-50:#fff7fa; --pink-100:#ffeef4; --pink-150:#ffe3ec; --pink-200:#ffd6e3;
+  --pink-300:#f9b8cd; --pink-400:#f193b3; --pink-500:#e2718f; --pink-600:#c4576f;
+  --ink:#3f3238; --ink-soft:#6b5860; --ink-mute:#9a848d;
+  --line:#f6dbe4; --card:#ffffff;
+  --gold:#c99a4e; --sage:#7fa88c; --sky:#7d9bc4;
+  --shadow:0 1px 2px rgba(196,87,111,.05), 0 8px 24px rgba(196,87,111,.07);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Georgia","Songti SC","Noto Serif SC",-apple-system,BlinkMacSystemFont,"Segoe UI",serif;
+  background:linear-gradient(170deg,var(--pink-50) 0%,#fffdfe 45%,var(--pink-100) 100%);
+  background-attachment:fixed;
+  color:var(--ink); line-height:1.75; font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--pink-600);text-decoration:none;border-bottom:1px solid var(--pink-200)}
+a:hover{border-bottom-color:var(--pink-500)}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px 120px}
+
+/* ---------- header ---------- */
+header.top{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,247,250,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.top-inner{max-width:940px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-size:19px;font-weight:700;letter-spacing:.3px;color:var(--pink-600);white-space:nowrap}
+.brand small{display:block;font-size:11px;font-weight:400;color:var(--ink-mute);letter-spacing:2px;text-transform:uppercase}
+nav.tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav.tabs button{
+  font-family:inherit;font-size:14px;padding:7px 16px;border-radius:999px;cursor:pointer;
+  border:1px solid transparent;background:transparent;color:var(--ink-soft);transition:.18s;
+}
+nav.tabs button:hover{background:var(--pink-150)}
+nav.tabs button.on{background:var(--pink-300);color:#fff;box-shadow:0 2px 8px rgba(241,147,179,.4)}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
+select,input[type=range],input[type=text],input[type=search]{
+  font-family:inherit;font-size:13px;border:1px solid var(--line);background:#fff;
+  border-radius:8px;padding:5px 8px;color:var(--ink);
+}
+input[type=range]{padding:0;height:20px}
+
+/* ---------- generic ---------- */
+.panel{display:none;animation:fade .35s ease}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 28px;margin:22px 0;box-shadow:var(--shadow);
+}
+h1,h2,h3,h4{font-weight:700;line-height:1.35;margin:0}
+.daybar{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  margin:30px 0 6px;padding-bottom:14px;border-bottom:2px solid var(--pink-200);
+}
+.daybar h1{font-size:27px;color:var(--pink-600)}
+.daybar .theme{
+  font-size:13px;background:var(--pink-150);color:var(--pink-600);
+  padding:3px 12px;border-radius:999px;border:1px solid var(--pink-200);
+}
+.daybar .hl{width:100%;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:4px}
+.sechead{display:flex;align-items:center;gap:10px;margin:36px 0 4px;font-size:13px;letter-spacing:3px;color:var(--pink-400);text-transform:uppercase}
+.sechead:after{content:"";flex:1;height:1px;background:var(--line)}
+
+/* ---------- news ---------- */
+.news{position:relative}
+.news .num{
+  position:absolute;top:-12px;left:-12px;width:34px;height:34px;border-radius:50%;
+  background:var(--pink-300);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;box-shadow:0 3px 10px rgba(241,147,179,.45);
+}
+.news h3{font-size:19px;margin-bottom:8px;padding-left:4px}
+.metaline{font-size:12.5px;color:var(--ink-mute);margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chip{background:var(--pink-100);border:1px solid var(--pink-200);color:var(--pink-600);padding:2px 10px;border-radius:999px;font-size:11.5px}
+.summary{
+  background:linear-gradient(180deg,var(--pink-50),#fff);
+  border-left:3px solid var(--pink-300);padding:12px 16px;border-radius:0 10px 10px 0;
+  font-size:15px;margin-bottom:18px;
+}
+.block{margin-top:18px}
+.block > .lab{
+  font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--pink-500);
+  display:flex;align-items:center;gap:7px;margin-bottom:9px;
+}
+.block > .lab i{width:5px;height:5px;border-radius:50%;background:var(--pink-400);display:inline-block;font-style:normal}
+.terms{list-style:none;margin:0;padding:0}
+.terms li{
+  padding:11px 12px;border-radius:11px;margin-bottom:7px;background:var(--pink-50);
+  border:1px solid transparent;transition:.15s;
+}
+.terms li:hover{border-color:var(--pink-200);background:#fff}
+.tm-top{display:flex;align-items:flex-start;gap:9px;flex-wrap:wrap}
+.tm{font-family:"Georgia",serif;font-weight:700;color:var(--ink);font-size:15.5px;cursor:context-menu}
+.tm-zh{color:var(--ink-soft);font-size:14px}
+.tm-note{font-size:13px;color:var(--ink-mute);margin-top:5px;padding-left:2px;border-left:2px solid var(--pink-150);padding-left:9px}
+.tm-ex{font-size:13.5px;color:var(--sky);margin-top:5px;font-style:italic}
+.spk{
+  border:none;background:var(--pink-200);color:var(--pink-600);width:25px;height:25px;
+  border-radius:50%;cursor:pointer;font-size:12px;line-height:1;flex-shrink:0;transition:.15s;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.spk:hover{background:var(--pink-400);color:#fff;transform:scale(1.1)}
+.spk.playing{background:var(--pink-500);color:#fff;animation:pulse .8s infinite}
+@keyframes pulse{50%{opacity:.55}}
+.star{
+  border:none;background:transparent;color:var(--pink-300);cursor:pointer;font-size:15px;
+  padding:0 2px;transition:.15s;flex-shrink:0;
+}
+.star:hover{transform:scale(1.2)}
+.star.on{color:var(--gold)}
+.prose{font-size:14.5px;color:var(--ink-soft);background:#fffdfe;border:1px dashed var(--line);border-radius:11px;padding:13px 16px;white-space:pre-wrap}
+.prose.subtext{border-color:var(--pink-200);background:linear-gradient(180deg,#fffafc,#fff)}
+
+/* ---------- ted ---------- */
+.vidwrap{position:relative;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:16px;background:#000}
+.vidwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.linkrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.linkrow a{
+  font-size:13px;background:var(--pink-100);border:1px solid var(--pink-200);
+  padding:6px 14px;border-radius:999px;border-bottom:1px solid var(--pink-200);
+}
+.linkrow a:hover{background:var(--pink-200)}
+
+/* ---------- notes ---------- */
+textarea{
+  width:100%;font-family:inherit;font-size:14.5px;line-height:1.8;color:var(--ink);
+  border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fffdfe;
+  resize:vertical;min-height:130px;
+}
+textarea:focus{outline:none;border-color:var(--pink-300);background:#fff;box-shadow:0 0 0 3px var(--pink-100)}
+.saveline{font-size:12px;color:var(--ink-mute);margin-top:6px;height:16px}
+
+/* ---------- roadmap ---------- */
+details.road{margin:18px 0}
+details.road summary{
+  cursor:pointer;font-size:14px;color:var(--pink-600);background:var(--pink-100);
+  border:1px solid var(--pink-200);border-radius:999px;padding:8px 18px;display:inline-block;list-style:none;
+}
+details.road summary::-webkit-details-marker{display:none}
+.roadgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:16px}
+.roadcell{background:var(--pink-50);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.roadcell b{display:block;font-size:13.5px;color:var(--pink-600);margin-bottom:3px}
+.roadcell span{font-size:12.5px;color:var(--ink-soft)}
+.roadcell.today{border-color:var(--pink-400);background:#fff;box-shadow:0 0 0 3px var(--pink-100)}
+
+/* ---------- vocab book ---------- */
+.vbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.btn{
+  font-family:inherit;font-size:13px;padding:7px 15px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--pink-200);background:#fff;color:var(--pink-600);transition:.15s;
+}
+.btn:hover{background:var(--pink-100)}
+.btn.solid{background:var(--pink-400);color:#fff;border-color:var(--pink-400)}
+.btn.solid:hover{background:var(--pink-500)}
+.btn.ghost{border-color:var(--line);color:var(--ink-mute)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:18px}
+.stat{background:var(--pink-50);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.stat b{display:block;font-size:24px;color:var(--pink-500)}
+.stat span{font-size:12px;color:var(--ink-mute)}
+table.vb{width:100%;border-collapse:collapse;font-size:14px}
+table.vb th{
+  text-align:left;font-size:11.5px;letter-spacing:1px;color:var(--ink-mute);
+  text-transform:uppercase;padding:8px 10px;border-bottom:1px solid var(--line);font-weight:600;
+}
+table.vb td{padding:10px;border-bottom:1px solid var(--pink-100);vertical-align:top}
+table.vb tr:hover td{background:var(--pink-50)}
+.lvl{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid}
+.lvl.n{color:var(--pink-600);border-color:var(--pink-200);background:var(--pink-100)}
+.lvl.l{color:var(--sky);border-color:#d8e3f0;background:#f2f7fc}
+.lvl.m{color:var(--sage);border-color:#d7e7dd;background:#f2f9f5}
+.empty{text-align:center;color:var(--ink-mute);padding:40px 20px;font-size:14px}
+
+/* ---------- archive ---------- */
+.arch{display:flex;gap:14px;align-items:flex-start;padding:16px;border:1px solid var(--line);border-radius:13px;margin-bottom:12px;background:#fff;cursor:pointer;transition:.15s}
+.arch:hover{border-color:var(--pink-300);box-shadow:var(--shadow)}
+.arch .d{flex-shrink:0;width:66px;text-align:center;background:var(--pink-100);border-radius:10px;padding:8px 4px}
+.arch .d b{display:block;font-size:20px;color:var(--pink-600);line-height:1.1}
+.arch .d span{font-size:11px;color:var(--ink-mute)}
+.arch .c{flex:1;min-width:0}
+.arch .c b{font-size:14.5px}
+.arch .c p{margin:4px 0 0;font-size:13px;color:var(--ink-mute);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* ---------- flashcard ---------- */
+.fc-back{position:fixed;inset:0;background:rgba(63,50,56,.45);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.fc-back.on{display:flex}
+.fc{background:#fff;border-radius:22px;max-width:560px;width:100%;padding:38px 34px;box-shadow:0 24px 60px rgba(63,50,56,.28);text-align:center}
+.fc .q{font-size:26px;font-weight:700;margin-bottom:8px;word-break:break-word}
+.fc .a{display:none;color:var(--ink-soft);font-size:15px;margin-top:14px;text-align:left;background:var(--pink-50);border-radius:12px;padding:14px 16px}
+.fc.rev .a{display:block}
+.fc .prog{font-size:12px;color:var(--ink-mute);margin-bottom:20px;letter-spacing:1px}
+.fc .acts{display:flex;gap:8px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+
+/* ---------- context menu ---------- */
+#cmenu{
+  position:fixed;z-index:300;background:#fff;border:1px solid var(--pink-200);border-radius:12px;
+  box-shadow:0 12px 34px rgba(196,87,111,.22);padding:6px;display:none;min-width:190px;
+}
+#cmenu button{
+  display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;
+  padding:9px 13px;border:none;background:transparent;border-radius:8px;cursor:pointer;color:var(--ink);
+}
+#cmenu button:hover{background:var(--pink-100);color:var(--pink-600)}
+#cmenu .hd{font-size:11px;color:var(--ink-mute);padding:5px 13px 7px;border-bottom:1px solid var(--pink-100);margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ---------- toast & banner ---------- */
+#toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--pink-500);color:#fff;padding:11px 22px;border-radius:999px;font-size:14px;
+  box-shadow:0 8px 26px rgba(196,87,111,.34);z-index:400;opacity:0;transition:.3s;pointer-events:none;
+}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.warn{
+  background:#fffaf0;border:1px solid #f0dfc0;color:#8a6d3b;border-radius:12px;
+  padding:12px 16px;font-size:13.5px;margin:20px 0;
+}
+.warn b{color:#7a5a25}
+footer{text-align:center;font-size:12px;color:var(--ink-mute);padding:40px 0 10px}
+@media(max-width:640px){
+  .card{padding:20px 18px}.daybar h1{font-size:22px}.news .num{left:-4px;top:-16px}
+  .top-inner{padding:10px 14px}.wrap{padding:0 12px 100px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">BioLingua Daily<small>Yu · 生物医药英语精读</small></div>
+    <nav class="tabs">
+      <button data-tab="industry" class="on">① 行业精读</button>
+      <button data-tab="ted">② TED</button>
+      <button data-tab="review">③ 回溯 · 单词本</button>
+    </nav>
+    <div class="toolbar" style="width:100%;border-top:1px solid var(--line);padding-top:9px;margin-top:2px">
+      <span>日期</span><select id="daySel"></select>
+      <span style="margin-left:8px">发音</span><select id="voiceSel" style="max-width:180px"></select>
+      <span style="margin-left:8px">语速</span><input type="range" id="rate" min="0.6" max="1.2" step="0.05" value="0.92" style="width:90px">
+      <span id="rateVal" style="width:32px">0.92</span>
+      <span style="margin-left:auto;color:var(--pink-500)" id="wcount">单词本 0</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="storeWarn"></div>
+
+  <!-- ============ TAB 1 ============ -->
+  <section class="panel on" id="tab-industry">
+    <div class="daybar">
+      <h1 id="dTitle"></h1><span class="theme" id="dTheme"></span>
+      <div class="hl" id="dHead"></div>
+    </div>
+
+    <details class="road">
+      <summary>📍 一年学习路线图 · 点击展开</summary>
+      <div class="card" style="margin-top:12px">
+        <div class="block"><div class="lab"><i></i>每周主题轮转</div></div>
+        <div class="roadgrid" id="roadWeek"></div>
+        <div class="block" style="margin-top:24px"><div class="lab"><i></i>四个季度的能力台阶</div></div>
+        <div class="roadgrid" id="roadQ"></div>
+        <p style="font-size:13px;color:var(--ink-mute);margin-top:18px;margin-bottom:0">
+          用法：每天 30–40 分钟。先花 15 分钟读完 5 条新闻与词汇（不懂就右键收藏，别停），10 分钟看专家评论与「弦外之音」并在心里复述因果链，5 分钟做 TED 跟读，最后 5 分钟写感悟。周日只做复习，不读新内容。
+        </p>
+      </div>
+    </details>
+
+    <div class="sechead">今日五条 · Top 5</div>
+    <div id="newsList"></div>
+
+    <div class="sechead">今日深挖 · Deep Dive</div>
+    <div id="deepDive"></div>
+
+    <div class="sechead">我的收获与感悟</div>
+    <div class="card">
+      <p style="font-size:13.5px;color:var(--ink-mute);margin:0 0 12px">
+        建议写三件事：① 今天最颠覆我认知的一句话；② 我能用一句英文复述的因果链；③ 明天想追踪的一个问题。
+      </p>
+      <textarea id="noteIndustry" placeholder="今天的收获…"></textarea>
+      <div class="saveline" id="saveIndustry"></div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 2 ============ -->
+  <section class="panel" id="tab-ted">
+    <div class="daybar"><h1>TED of the Day</h1><span class="theme" id="tedDate"></span></div>
+    <div class="card" id="tedCard"></div>
+
+    <div class="sechead">地道表达 · Native Phrasing</div>
+    <div class="card"><ul class="terms" id="tedPhrases"></ul></div>
+
+    <div class="sechead">影子跟读 · Shadowing</div>
+    <div class="card">
+      <div class="block"><div class="lab"><i></i>推荐区间</div><div class="prose" id="shadowSeg"></div></div>
+      <div class="block"><div class="lab"><i></i>四步法</div><div class="prose" id="shadowHow"></div></div>
+      <div class="block"><div class="lab"><i></i>跟读打卡与感悟</div>
+        <textarea id="noteTed" placeholder="今天跟读了几遍？哪个音／哪个连读卡住了？他的哪句话让你想到行业里的什么事？"></textarea>
+        <div class="saveline" id="saveTed"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB 3 ============ -->
+  <section class="panel" id="tab-review">
+    <div class="daybar"><h1>回溯 · 单词本</h1><span class="theme">复习是唯一真正的进步</span></div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="sechead">复习 · Spaced Repetition</div>
+    <div class="card">
+      <p style="font-size:13.5px;color:var(--ink-mute);margin:0 0 14px">
+        采用「间隔重复」：认识 → 下次间隔翻倍；模糊 → 间隔重置为 1 天；不认识 → 当场重排队。每天先清掉「今日到期」再学新内容。
+      </p>
+      <div class="vbar">
+        <button class="btn solid" id="btnDue">开始复习今日到期 (<span id="dueN">0</span>)</button>
+        <button class="btn" id="btnAll">全部过一遍</button>
+        <button class="btn" id="btnStar">只复习加星</button>
+      </div>
+    </div>
+
+    <div class="sechead">单词本 · Word Bank</div>
+    <div class="card">
+      <div class="vbar">
+        <input type="search" id="vSearch" placeholder="搜索单词 / 释义 / 备注" style="flex:1;min-width:180px">
+        <select id="vSrc"><option value="">全部来源</option></select>
+        <select id="vLvl"><option value="">全部熟练度</option><option value="new">新词</option><option value="learning">学习中</option><option value="mastered">已掌握</option></select>
+        <select id="vSort"><option value="added">最近添加</option><option value="due">到期优先</option><option value="alpha">字母序</option></select>
+        <button class="btn ghost" id="btnExport">导出备份</button>
+        <button class="btn ghost" id="btnImport">导入备份</button>
+        <input type="file" id="fileIn" accept=".json" style="display:none">
+      </div>
+      <div id="vbWrap"></div>
+    </div>
+
+    <div class="sechead">每日回溯 · Archive</div>
+    <div class="card" id="archive"></div>
+  </section>
+
+  <footer>右键任意词条或选中任意文本 → 加入单词本 &nbsp;·&nbsp; 数据仅保存在本机浏览器，请定期「导出备份」</footer>
+</div>
+
+<div id="cmenu"><div class="hd" id="cmHd"></div><button id="cmAdd">＋ 加入单词本</button><button id="cmSpeak">🔊 朗读</button><button id="cmCopy">⧉ 复制</button></div>
+<div id="toast"></div>
+<div class="fc-back" id="fcBack"><div class="fc" id="fc">
+  <div class="prog" id="fcProg"></div>
+  <div class="q" id="fcQ"></div>
+  <button class="btn" id="fcSpeak" style="margin-top:6px">🔊 朗读</button>
+  <div class="a" id="fcA"></div>
+  <div class="acts" id="fcActs"></div>
+</div></div>
+
+<script type="application/json" id="corpus">{"meta":{"version":1,"title":"BioLingua Daily","owner":"Yu","startDate":"2026-08-19"},"roadmap":{"weekly":[{"day":"周一","theme":"全链条研发 R&D Value Chain","focus":"Target → IND → Ph1/2/3 → NDA/BLA → LCM。读懂 endpoint、readout、trial design 的语言。"},{"day":"周二","theme":"前沿技术风向 Modality Watch","focus":"ADC、双抗/多抗、细胞与基因治疗、mRNA、放射配体、AI 制药、口服多肽。"},{"day":"周三","theme":"法规与合规 Regulatory & Compliance","focus":"FDA/EMA/NMPA 路径、AA/BTD/PRV/Orphan、CRL、CMC 与 GMP、真实世界证据。"},{"day":"周四","theme":"Glocal 中国全球化","focus":"License-out、NewCo、BD 估值、跨境合规（BIOSECURE 类立法）、本地化临床与注册。"},{"day":"周五","theme":"医保与准入 Access & Reimbursement","focus":"IRA/MFP、PBM 与 rebate、NRDL 谈判、VBP 集采、HTA/ICER、gross-to-net。"},{"day":"周六","theme":"商业模式转变 Business Model Shift","focus":"Patent cliff、DTC 直销、cash-pay、风险共担合同、平台交易 vs 单资产。"},{"day":"周日","theme":"周复盘 Weekly Review","focus":"只复习：单词本闪卡 + 本周 5 条最重要新闻的因果链重述（用英文口述 3 分钟）。"}],"quarters":[{"q":"Q1 · 第 1–13 周","goal":"建立词汇地基与新闻解码能力","detail":"目标：看懂任意一条 Fierce/Endpoints 头条的 90% 术语；能说清一条新闻属于研发链条的哪一环。产出：500 个高频行业词 + 100 个句型。"},{"q":"Q2 · 第 14–26 周","goal":"建立因果推理与盘感","detail":"目标：读到 readout 能预判股价方向与竞品影响；能区分「数据好」与「商业上有意义」。产出：每周写 1 段 150 词英文点评。"},{"q":"Q3 · 第 27–39 周","goal":"打通准入与商业化逻辑","detail":"目标：能画出一款药从定价、PBM/医保谈判到放量的完整现金流路径；掌握 IRA、NRDL、VBP 三套规则。产出：3 份单品种 access 分析。"},{"q":"Q4 · 第 40–52 周","goal":"形成独立判断与中国视角","detail":"目标：能就任一 China license-out 交易独立估值并判断结构合理性；写出一份 5 页行业年度观察。产出：年度复盘长文（英文 1500 词）。"}]},"days":[{"date":"2026-08-20","weekday":"周四","theme":"Glocal 中国全球化","headline":"中国资产正在为跨国药企的全球试验和产品线持续「供货」，而美国这一端的规则制定者（FDA 局长人选）与付费规则（IRA 谈判遭司法挑战）同时进入不确定期——供给侧确定性上升、需求侧确定性下降，是今天这五条共同的底色。","news":[{"id":"n1","title":"Biokin bispecific ADC iza-bren hits goal in lung cancer trial, boosting case for BMS' global test","source":"Fierce Pharma","url":"https://www.fiercepharma.com/pharma/biokin-bispecific-adc-iza-bren-hits-goal-lung-cancer-trial-boosting-case-bms-global-test","tag":"Glocal 中国全球化","summary":"百利天恒的 EGFRxHER3 双抗 ADC iza-bren 在中国三期 Panku-Lung01 达到主要终点：EGFR-TKI 经治的晚期非鳞 NSCLC 显著延长无进展生存，总生存亦见正向趋势。该药曾以 8 亿美元首付、总额至多 84 亿美元授权给 BMS，中国数据正在为其全球三期背书。","terms":[{"t":"hit the (primary) goal / meet the primary endpoint","zh":"达到主要终点","note":"新闻标题偏爱短词 hit goal，正式稿件写 met its primary endpoint。写作时用后者，读新闻时认前者。"},{"t":"bispecific ADC","zh":"双特异性抗体偶联药物","note":"bispecific 指一个抗体同时结合两个靶点（此处 EGFR 与 HER3）；ADC = antibody-drug conjugate，抗体做导航、毒素做弹头。"},{"t":"boost the case for","zh":"为……增添了说服力／让……更站得住脚","note":"make the case for 是「论证支持」，boost the case for 是在已有论证上再加砝码，常用于数据支持某项决策。"},{"t":"progression-free survival (PFS)","zh":"无进展生存期","note":"肿瘤试验最常见的替代终点。搭配用 a significant PFS benefit、improve PFS，不说 increase PFS。"},{"t":"a positive trend toward an improvement","zh":"呈现向好趋势（但尚未达统计学显著）","note":"行业里最重要的一句「客套话」：说明数据方向对但没打赢统计。看到 trend 二字就要意识到还没有 statistically significant。"},{"t":"post-TKI setting","zh":"TKI 治疗失败后（的治疗场景）","note":"setting 在临床语境里指「治疗场景／线数」，如 first-line setting、adjuvant setting，不是「设置」。"},{"t":"upfront payment","zh":"首付款","note":"授权交易三段式：upfront（首付）+ milestones（里程碑）+ royalties（销售分成）。媒体报的「总额」几乎都是三者相加的理论上限。"},{"t":"read through to","zh":"（一个数据）可外推／可参照到（另一试验）","note":"投资人常用：Does the China data read through to the global trial? 意即中国人群结果能否预示全球人群结果。"}],"expert":"同行看到这条会立刻追问三件事。第一，PFS 赢了，但 OS 只写「正向趋势」——ADC 在 EGFR-TKI 经治人群里的获益能否转化为生存获益，是 BMS 全球三期 Izabright-Lung01 真正的风险点。第二，对照臂是什么？在中国，TKI 失败后的标准治疗多为含铂化疗，而全球多地已有 Dato-DXd、amivantamab 等新选择，对照臂强度不同会显著影响结果的可外推性。第三，安全性尤其是间质性肺病（ILD）发生率——这是 ADC 在肺癌人群里最常见的翻车点，本次新闻稿并未披露。三个问题不解决，中国数据只能算是「降低了风险」，还不是「证明了全球可行」。","subtext":"没说的部分比说了的更值得读：没有 HR 数值，没有 OS 成熟度，没有 ILD 数据，也没说全球试验是否会因此调整。可见这次披露的主要功能是资本市场沟通与全球试验背书，而非完整的科学交底。第二层含义在于交易结构——8 亿美元首付换来的是「中国先跑、全球后验」的开发范式：中国以较低成本、较快入组完成概念验证，跨国药企承担全球确证性试验的费用与风险。对中国市场的映射是，这类资产的国内定价会被境外授权金额反向锚定，「在中国便宜、在海外贵」的双轨定价越来越难自圆其说。"},{"id":"n2","title":"Sandoz inks $322M Henlius deal for rights to as many as 10 biosimilars","source":"BioSpace","url":"https://www.biospace.com/drug-delivery/sandoz-inks-322m-henlius-deal-for-rights-to-as-many-as-10-biosimilars","tag":"商业模式","summary":"山德士与上海复宏汉霖签署总额最高 3.22 亿美元的协议，先期与近期付款约 1.005 亿美元，换取最多 10 个生物类似药的中国以外权益。首批资产包括 Repatha、Erbitux、Benlysta 的类似药及重组人透明质酸酶，由复宏汉霖负责开发与生产。","terms":[{"t":"ink a deal","zh":"签下协议","note":"新闻体高频动词，等于 sign。同族还有 pen a deal、strike a deal、seal a deal，正式文书里仍用 enter into an agreement。"},{"t":"biosimilar","zh":"生物类似药","note":"不能说 generic biologic。生物药无法完全复制，只能做到 highly similar，因此监管路径叫 biosimilarity 而非 bioequivalence。"},{"t":"ex-China rights","zh":"中国以外的权益","note":"ex- 在交易语境是「除……之外」，如 ex-US、ex-Japan。别读成「前任」。这是 license-out 中最常见的地域切分方式。"},{"t":"milestone payments","zh":"里程碑付款","note":"分为 development / regulatory / commercial milestones。报道里的「总额」通常把三类全部按最好情况相加。"},{"t":"as many as 10 biosimilars","zh":"多达 10 个生物类似药","note":"as many as 强调数量之多，暗示是上限而非确定数。中文写「多达」比「10 个」更忠实。"},{"t":"reference product","zh":"原研参照药","note":"生物类似药必须指定一个 reference product 做头对头比较；美国叫 reference product，欧盟叫 reference medicinal product。"},{"t":"loss of exclusivity (LOE)","zh":"独占期到期","note":"行业里说「某药 LOE 了」即专利／数据保护到期、类似药可进场，是所有 biosimilar 交易的时间锚点。"},{"t":"GMP-certified capacity","zh":"通过 GMP 认证的产能","note":"capacity 以升（liters）计。谈生物药产能时说 84,000-liter capacity，量词用 -liter 连字符作定语。"}],"expert":"熟悉这块的人会问：山德士买的是分子，还是产能？以 1 亿美元出头拿下多达 10 个资产的境外权益，几乎是「按管线打包批发」，说明稀缺的不是靶点选择——Repatha、Benlysta 的 LOE 时间点全行业都看得见——而是能在 84,000 升规模上稳定、低成本、且带美国 GMP 认证交付的产线。第二个问题是时间：首批三个资产分处临床、技术开发与早期阶段，现金流要到 2030 年前后才可能出现。第三是地缘：ex-China 权益含美国，而生物药供应链本土化压力正在上升，能否顺利执行取决于政治环境而非科学。","subtext":"「没说的部分」值得注意：没有披露分成比例（royalty rate），没有说明是否含独家生产权，也没有任何一方的高管表态——一份连引语都没有的新闻稿，通常意味着双方都不想把它讲成战略级事件。第二层含义是中国生物制药的角色正在分层：创新药走 license-out 讲估值故事，生物类似药走「全球代工＋权益分成」，后者不性感但现金流确定、可复制、抗周期。对中国市场的映射是，国内生物类似药已被集采压到微利，承接跨国仿创企业的产能需求几乎是唯一能维持毛利的路径；这不是进攻，是转移。"},{"id":"n3","title":"Trump taps White House aide Heidi Overton as nominee for next FDA commissioner","source":"Fierce Biotech","url":"https://www.fiercebiotech.com/biotech/trump-taps-white-house-aide-overton-next-fda-commissioner","tag":"法规与合规","summary":"特朗普提名白宫国内政策委员会副主任 Heidi Overton 出任下一任 FDA 局长。她拥有医学博士与约翰霍普金斯临床研究博士学位，曾主持 America First Policy Institute 的健康美国中心。FDA 自 Makary 今年 5 月离任后由 Kyle Diamantas 代理，提名须经参议院 HELP 委员会确认。","terms":[{"t":"tap someone as / for","zh":"点将、选定某人担任","note":"比 appoint 口语、比 name 生动，专用于高层人事新闻。注意只用于「选中」，正式任命仍需 confirm。"},{"t":"nominee vs. appointee","zh":"被提名人 vs. 已获任命者","note":"FDA 局长属须经参议院确认的职位，因此在确认前只能称 nominee；写成 the new commissioner 是事实性错误。"},{"t":"Senate HELP Committee","zh":"参议院卫生、教育、劳工与养老金委员会","note":"HELP = Health, Education, Labor and Pensions。FDA、NIH、CDC 的人事与监督都要过这个委员会。"},{"t":"confirmation hearing","zh":"（人事）确认听证会","note":"流程链条：nomination → confirmation hearing → committee vote → floor vote。四步缺一不可。"},{"t":"lame duck","zh":"跛脚鸭；任期将尽、影响力衰减者","note":"指初选落败或不再连任但仍在位的官员。用于判断其政治资本还剩多少，是解读听证难度的关键线索。"},{"t":"interim / acting leader","zh":"代理负责人","note":"acting 强调「代行职权」，interim 强调「过渡期」。机构长期由 acting 主持，常被解读为政策不确定。"},{"t":"depart / step down","zh":"离任、辞职","note":"媒体用中性的 depart 或 step down；被免职才用 ousted、forced out。选词本身就是立场信号。"},{"t":"chief policy officer","zh":"首席政策官","note":"智库与倡导机构的常见头衔，负责对外政策主张而非内部运营，与企业的 CPO（Chief Product Officer）不同。"}],"expert":"业内真正关心的不是履历，而是三个问题。第一，她对加速批准（accelerated approval）与真实世界证据的立场是什么？前任 Makary 任内推动了若干审评路径改革，继任者是延续还是回摆，直接决定罕见病与肿瘤领域的申报策略。第二，FDA 的人手与审评时限——机构在经历减员与代理领导期后，PDUFA 时限的兑现率是所有申办方今年最实际的焦虑。第三，确认时间表：主持 HELP 委员会的 Cassidy 已在初选中落败，是典型的 lame duck，这既可能让听证走得更快（无连任包袱），也可能让程序更漂移。在确认落定之前，FDA 的政策方向仍属未定，任何依赖「监管友好度」的估值假设都应打折。","subtext":"白宫表态里没有一个字提到审评标准、药价或与 CMS 的协同，通篇是忠诚度与国家竞争力的语言——这本身就是信号：首要考量是政策执行的一致性，而非监管技术路线。第二层含义是，局长空缺三个月由代理主持，说明该职位在本届政府的优先级并不靠前，机构自主性可能被政策中枢进一步吸收。对中国市场的映射有两层：一是中国资产赴美申报的不确定性随审评资源波动放大，license-out 里的监管里程碑条款风险上升；二是若 FDA 更强调本土创新领导地位，对仅来自中国人群的数据接受度可能趋紧。"},{"id":"n4","title":"Teva scores rare partial win in CMS price negotiation appeal","source":"Fierce Pharma","url":"https://www.fiercepharma.com/pharma/teva-scores-rare-partial-court-win-vs-cms-price-negotiations","tag":"医保与准入","summary":"华盛顿特区联邦上诉法院将 Teva 对 CMS「真实上市销售」（bona fide marketing）标准的质疑发回地区法院重审，法官 J. Michelle Childs 指出下级法院从未审查该标准是否符合 IRA；但法院同时维持 CMS 把 Austedo 与 Austedo XR 认定为同一药品、一并纳入谈判的做法。","terms":[{"t":"remand (a case) to the district court","zh":"将案件发回地区法院（重审）","note":"remand ≠ 判赢。它只是把问题退回下级法院先行审理，实体结果仍未定，媒体常把它写成 win，要留心。"},{"t":"bona fide marketing","zh":"真实（实质性）上市销售","note":"bona fide 是拉丁语「善意、真实的」。此处指仿制药必须真正在市场上销售，而非象征性上市，原研药才能退出谈判名单。"},{"t":"in the first instance","zh":"由（下级法院）先行处理","note":"法律固定表达，意为「一审层面先解决」，不是「首先」。判决书原文即用此语把问题交还地区法院。"},{"t":"uphold vs. overturn","zh":"维持（原判／行政决定）vs. 推翻","note":"还有 vacate（撤销）、affirm（确认）。判决报道里这几个动词决定了胜负方向，不能混用。"},{"t":"score a rare win","zh":"罕见地赢下一局","note":"score 在此是「拿下、争得」，比 win 更强调来之不易。rare 一词暗示制药业在 IRA 诉讼中此前几乎全败。"},{"t":"Drug Price Negotiation Program","zh":"（IRA 下的）药价谈判计划","note":"官方名称是 Medicare Drug Price Negotiation Program，媒体简写为 price negotiations。避免译成「集采」——机制完全不同。"},{"t":"treated as a single drug","zh":"被认定为同一药品（合并计算）","note":"IRA 按「单一活性成分」归并剂型，因此缓释版 XR 不能单独豁免。这是本案 Teva 输掉的部分。"},{"t":"generic entry","zh":"仿制药上市（进入市场）","note":"搭配 delay generic entry、block generic entry。IRA 的设计逻辑是：一旦有真实仿制竞争，就无需政府谈判。"}],"expert":"熟悉准入的人会追问：这次「部分胜诉」到底改变了什么？实质上只改变了一件事——CMS 用什么标准判断仿制药是否「真实在售」，现在要接受司法审查。真正的追问有三层。第一，如果 bona fide marketing 标准被判过宽或过窄，会不会诱发新的博弈：原研方有动机促成一个「象征性仿制上市」以脱离谈判名单，而 CMS 的标准正是为了堵这个口子。第二，Austedo 与 Austedo XR 被合并认定，意味着「改剂型延长生命周期」这条经典策略在 IRA 下基本失效，产品生命周期管理的算法要重写。第三，这类判决对后续谈判周期的名单是否有溯及力，目前没有答案。整体看，行业赢的是程序，不是规则。","subtext":"措辞值得注意：法院强调把问题「留给下级法院先行考虑」，等于回避了对 IRA 合宪性的实体表态。迄今制药业针对 IRA 的宪法层面挑战几乎全部失败，本案拿到的只是行政法层面的技术性回旋，说明司法路径基本走到尽头，博弈重心正移回国会与规则制定端。第二层含义是，企业越来越倾向挑战「定义」而非「制度」——谁算一个药、谁算真实竞争，定义之争的经济价值可能高于制度之争。对中国的映射很直接：医保谈判与集采同样以剂型归并和是否存在实质竞争为核心判定，但缺乏对等的司法救济通道，这也解释了为何中国药企的政府事务权重远高于法务。"},{"id":"n5","title":"Merck, Moderna's personalized cancer vaccine slows recurrence in phase 3, setting up approval push","source":"Fierce Biotech","url":"https://www.fiercebiotech.com/biotech/merck-and-modernas-personalized-cancer-vaccine-slows-recurrence-ph-3-trial","tag":"前沿技术","summary":"默沙东与 Moderna 的个体化 mRNA 肿瘤疫苗 intismeran autogene（mRNA-4157／V940）在三期 INTerpath-001 中联合 Keytruda，使 1137 例完全切除的 IIB–IV 期黑色素瘤患者无复发生存显著改善，无远处转移生存亦达统计学显著，未见新的安全性信号，双方将与监管机构商谈加速批准。","terms":[{"t":"recurrence-free survival (RFS)","zh":"无复发生存期","note":"用于已完全切除、体内无可测量病灶的辅助治疗试验；有病灶时才用 PFS。两者不可互换。"},{"t":"individualized neoantigen therapy (INT)","zh":"个体化新抗原疗法","note":"先测患者肿瘤突变，再定制编码新抗原的 mRNA。行业正以 INT 取代「癌症疫苗」一词，因为它并非预防性疫苗。"},{"t":"completely resected","zh":"完全（根治性）切除","note":"resect 是外科专用动词，名词 resection。completely resected 是辅助治疗试验的入组前提。"},{"t":"adjuvant setting","zh":"辅助治疗阶段（术后）","note":"adjuvant 指术后清扫微小残留；neoadjuvant 指术前缩瘤。两个词只差一个前缀，临床含义完全不同。"},{"t":"accelerated approval","zh":"加速批准","note":"基于替代终点先批、后补确证性试验。与 priority review（缩短审评时钟）、breakthrough designation（沟通加密）是三件不同的事。"},{"t":"set up an approval push","zh":"为申报上市铺路／造势","note":"push 作名词指「一波集中推进」。类似说法 pave the way for a filing、tee up a submission。"},{"t":"no new safety signals","zh":"未观察到新的安全性信号","note":"行业标准表述。注意它只说「没有新的」，不等于「没有毒性」——已知毒性仍然存在。"},{"t":"distant metastasis-free survival (DMFS)","zh":"无远处转移生存期","note":"黑色素瘤等实体瘤辅助治疗的关键次要终点，比 RFS 更贴近真正的临床获益。"}],"expert":"行业里会追问三点。第一，绝对获益有多大？新闻稿只说「统计学显著且具临床意义」，未披露风险比与事件数，而在 Keytruda 单药已经把复发率压得很低的人群里，增量空间本就有限，没有 HR 就无法判断值不值这套定制化成本。第二，生产与周转（turnaround time）能否规模化——每位患者一支疫苗，测序、设计、合成、放行的周期若超过术后免疫治疗窗口，再好的数据也难以落地。第三，加速批准的替代终点问题：RFS 是否被监管方接受为可支持完全批准的终点，OS 数据尚未成熟，这决定了它是先获批再补数据，还是要等到本世纪 20 年代末。此外，定价与报销尚无任何口径。","subtext":"没给出的恰恰是最贵的信息：没有 HR、没有事件数、没有随访时长、没有制备周期、没有价格区间。这种「先发结论、后发数据」的节奏，通常服务于监管沟通与预期管理。第二层含义是范式转移——若个体化 mRNA 走通，肿瘤药的竞争要素会从「分子好不好」转向「测序—设计—生产—放行的闭环有多快」，制药公司实质上变成高度定制的生产与物流公司，对商业模式的冲击远大于对科学的冲击。对中国的映射是双面的：测序成本与入组速度是结构性优势，单位成本可能更低；但现行医保支付体系几乎无法容纳「一人一药」的定价逻辑，支付端才是真正的瓶颈。"}],"deepdive":{"title":"今日深挖 · Glocal 中国全球化","body":"把今天的 n1 与 n2 并排看，会发现中国生物医药出海已经分裂成两条完全不同的路，它们的语言、估值逻辑与监管风险都不一样。\n\n第一条是创新药的 license-out：upfront + milestones + royalties 三段式。媒体口径的「总额 84 亿美元」几乎永远是把开发、监管、商业三类里程碑按最理想情况相加的理论上限，真正落袋的往往只有首付那一笔。读这类新闻的第一个动作，就是把 upfront 从 total deal value 里单独摘出来。第二条是生物类似药与产能的输出，像山德士与复宏汉霖，用一亿美元出头拿下十个资产的 ex-China 权益。它不讲估值故事，讲的是 LOE 时间表和每升产能的成本——本质上是把中国的制造效率卖给全球仿创企业。\n\n决定这两条路能走多远的，是 FDA 与 NMPA 的差异。NMPA 自 2017 年加入 ICH 后技术要求已高度趋同，但角色不同：它在审评之外还深度嵌入产业政策，审评加速常与鼓励国产创新绑定；FDA 名义上只对科学与公共健康负责，却因局长由总统提名、参议院确认（正如今天 Overton 的提名），承受更直接的政治周期波动。对中国申办方最要命的差异是人群外推：NMPA 接受境外数据需做桥接研究，而 FDA 对「仅来自单一国家、且该国标准治疗与美国不同」的数据一向审慎——2022 年信迪利单抗的 ODAC 会议就是标准案例，专家组质疑的核心是对照臂与人群代表性，而非疗效本身。这也是 n1 里 BMS 必须另做全球三期的原因。\n\n所以 Glocal 的真正含义不是「在中国做全球生意」，而是承认存在两套证据标准：中国数据用来降低风险和定价，全球数据用来换取批准。","terms":[{"t":"total deal value vs. upfront","zh":"交易总额 vs. 首付款","note":"biobucks 是行业对「理论总额」的戏称。分析师习惯只看 upfront + near-term milestones，因为其余部分兑现概率通常低于三成。"},{"t":"bridging study","zh":"桥接研究","note":"为把境外数据外推到本国人群而做的补充试验，通常验证 PK 与剂量。NMPA 接受境外数据的常规前提。"},{"t":"extrapolation to the target population","zh":"向目标人群外推","note":"监管审评核心概念。争点通常有三：种族／代谢差异、对照臂是否等同于当地标准治疗、以及临床实践模式差异。"},{"t":"standard of care (SoC)","zh":"标准治疗","note":"对照臂必须是当地 SoC。中美 SoC 不同，正是单一国家数据难以被对方监管机构接受的根本原因。"},{"t":"ODAC (Oncology Drugs Advisory Committee)","zh":"（FDA）肿瘤药物咨询委员会","note":"非约束性专家投票，但结论对 FDA 决定影响极大。中国药企赴美申报时最需要预演的一关。"}]},"ted":{"speaker":"Siddhartha Mukherjee","title":"Soon we'll cure diseases with a cell, not a pill","event":"TED2015","duration":"约 20 分钟","embed":"https://embed.ted.com/talks/siddhartha_mukherjee_soon_we_ll_cure_diseases_with_a_cell_not_a_pill","page":"https://www.ted.com/talks/siddhartha_mukherjee_soon_we_ll_cure_diseases_with_a_cell_not_a_pill","transcript":"https://www.ted.com/talks/siddhartha_mukherjee_soon_we_ll_cure_diseases_with_a_cell_not_a_pill/transcript","why":"今天 n5 讲的是「一人一药」的个体化细胞与 mRNA 疗法，而 Mukherjee 这场演讲正是这套范式最早、也最有文学性的公开论证：他把「用药片对抗疾病」的旧模型，换成「用细胞重建组织」的新模型。语言上，他是普利策奖得主，句子有清晰的三段式推进、大量并列结构和精准的比喻，是练习学术演讲节奏与让步表达的极好材料；认知上，它能帮你补上「为什么整个行业要从小分子转向细胞与基因」的底层叙事——这是你读 ADC、CAR-T、INT 类新闻时始终需要的背景。","phrases":[{"t":"a paradigm shift","zh":"范式转移","note":"指底层认知框架的整体更换，而非渐进改良。学术与商业演讲通用，滥用会显空洞，务必接具体对照。","ex":"Individualized neoantigen therapy represents a paradigm shift from treating a tumor type to treating a single patient's tumor."},{"t":"to put it another way","zh":"换句话说","note":"重述过渡语，比 in other words 更口语、更有节奏感。适合在口语考试里为复杂论点做二次解释。","ex":"The upfront payment is only a fraction of the headline number; to put it another way, most of that $8.4 billion may never be paid."},{"t":"It turns out that ...","zh":"事实证明／结果发现……","note":"英语科普演讲的标志性句式，用来引出反直觉的发现。比 We found that 更自然，也更能制造悬念。","ex":"It turns out that manufacturing turnaround time, not efficacy, is the real bottleneck for personalized cancer vaccines."},{"t":"to be fair / to be sure","zh":"平心而论／诚然","note":"学术让步语。先承认对方合理之处，再转折推进，是雅思写作与口语拿高分的核心策略之一。","ex":"To be sure, the phase 3 data are encouraging; the absence of a hazard ratio, however, makes the magnitude of benefit impossible to judge."},{"t":"at the heart of","zh":"……的核心在于","note":"比 the most important part of 更凝练。搭配名词，不接从句：at the heart of the problem is …（注意倒装）。","ex":"At the heart of the Glocal model lies a simple asymmetry: China generates the evidence, the West grants the approval."},{"t":"far from being ..., it is actually ...","zh":"它非但不是……，实际上是……","note":"强对比修辞结构，用于纠正常见误解，句首前置能显著提升论述的力度。","ex":"Far from being a full victory, the ruling merely returns one narrow question to the lower court."},{"t":"in a fundamental sense","zh":"从根本意义上说","note":"比 basically 正式得多，用于把讨论从技术细节拉回原则层面。写作中放在句首并用逗号隔开。","ex":"In a fundamental sense, a cell therapy is not a drug at all; it is a manufacturing process delivered to one person."},{"t":"we have come to think of X as Y","zh":"我们已经习惯于把 X 理解为 Y","note":"用于铺陈「旧共识」，随后再推翻它。come to 表示认知的渐变过程，是很自然的高分表达。","ex":"We have come to think of medicine as something you swallow, rather than something that is grown."},{"t":"a case in point","zh":"一个恰当的例证","note":"举例过渡语，独立成句或作同位语。比 for example 更书面，也更能显示例子与论点的紧密关系。","ex":"The 2022 ODAC review of sintilimab is a case in point: the data were strong, the trial population was not representative."},{"t":"the sheer scale / complexity of","zh":"……之庞大／复杂本身","note":"sheer 用来强调程度令人震撼，只修饰抽象名词，不能说 sheer good。演讲中制造压迫感的常用词。","ex":"The sheer complexity of making a bespoke vaccine for every patient explains why so few companies have tried."},{"t":"beg the question","zh":"引出了一个问题（口语用法）","note":"严格逻辑学中它指「循环论证」，但当代口语与媒体已普遍用作 raise the question。写作时建议用 raise 更安全。","ex":"The deal begs the question of whether Sandoz was buying molecules or simply buying capacity."},{"t":"in the long run","zh":"从长远看","note":"固定搭配，注意是 run 不是 term（in the long term 也对，但 run 更口语）。对应的短期表达是 in the near term。","ex":"In the long run, payment systems, not science, will decide whether one-patient-one-drug therapies survive."}],"shadow":{"segment":"建议选取开场后约 2:00–6:00 的一段。这一段 Mukherjee 在铺陈「药片模型」的历史由来，句子完整、语速中等、专业术语密度低而逻辑连接词密度高，最适合用来练习意群停顿与重音落点；后半段的比喻与排比更适合等你熟悉节奏之后再攻。","how":"四步法：①盲听两遍，只抓主张与转折，不看文本，用中文写下三句话的大意；②对照 transcript 精读，把所有连接词与让步语（but、although、to be fair、it turns out）标出来，确认自己第一遍听漏了哪一处逻辑；③逐句跟读，重点不是发音准确，而是复制他的停顿位置和重读音节，一句话录一遍与原声对比；④脱稿复述，用自己的话把这四分钟讲成 90 秒，并强制使用今天 phrases 里的至少三个表达。全程约 35 分钟。"}}},{"date":"2026-08-19","weekday":"周三","theme":"法规与合规 Regulatory & Compliance","headline":"一天里同时出现了「技术胜利」「资本重定价」「政策落地」三条主线","news":[{"id":"n1","title":"Merck and Moderna's personalized cancer vaccine slows recurrence in phase 3 trial","source":"Fierce Biotech","url":"https://www.fiercebiotech.com/biotech/merck-and-modernas-personalized-cancer-vaccine-slows-recurrence-ph-3-trial","tag":"前沿技术","summary":"Merck 与 Moderna 的个体化 mRNA 新抗原疫苗 intismeran autogene 联合 Keytruda，在 1,137 例已切除 IIB–IV 期黑色素瘤患者中达到无复发生存期主要终点，将向监管机构沟通递交事宜。","terms":[{"t":"adjuvant therapy","zh":"辅助治疗（手术后为降低复发风险追加的治疗）","note":"对应 neoadjuvant therapy 新辅助治疗（术前）。这是肿瘤新闻里最高频的一对词。"},{"t":"recurrence-free survival (RFS)","zh":"无复发生存期","note":"早期肿瘤辅助治疗试验最常见的主要终点；晚期则多用 PFS / OS。"},{"t":"completely resected stage IIB-IV cutaneous melanoma","zh":"已完整切除的 IIB–IV 期皮肤黑色素瘤","note":"resect = 手术切除。resectable / unresectable 是判断入组人群的关键词。"},{"t":"individualized neoantigen therapy","zh":"个体化新抗原疗法","note":"neoantigen = 肿瘤突变产生、正常细胞没有的新抗原，是个体化疫苗的靶点基础。"},{"t":"The trial met its primary endpoint of recurrence-free survival.","zh":"该试验达到了无复发生存期这一主要终点。","note":"句型：meet / miss its primary endpoint 是判断一条试验新闻是好是坏的第一句话。"},{"t":"statistically significant and clinically meaningful","zh":"既有统计学显著性，也有临床意义","note":"两者必须同时出现。只说 statistically significant 而回避 clinically meaningful，往往意味着效应值偏小。"},{"t":"hazard ratio","zh":"风险比（HR）","note":"HR 0.6 = 复发风险降低 40%。公司不披露 HR 而只说「显著」，本身就是一种信号。"},{"t":"accelerated approval pathway","zh":"加速批准路径","note":"基于替代终点先批、后补确证性试验。FDA 近年对此路径收紧。"}],"expert":"肿瘤免疫领域的普遍看法是：这是 mRNA 个体化疫苗第一次在 III 期规模上拿到阳性结果，方向性意义大于数字本身。但资深审评人士会立刻追问三件事——HR 到底是多少（分析师的心理线是 0.5–0.8）、OS 数据是否成熟、以及每位患者 4–6 周的定制化生产周期能否规模化。一位常见的评论口径是：「疗效证明了生物学假设，但商业化取决于 CMC 和物流，而不是免疫学。」","subtext":"注意公司「没说什么」：新闻稿刻意不给 HR，只给形容词。这通常意味着数据达标但未压倒性。另一条暗线是 Moderna——2024 年它曾试图走加速批准而未成功，这次重提 accelerated approval，说明公司急需一个非新冠的收入支柱来支撑估值。对中国读者的映射是：个体化疗法的壁垒正在从「分子」转移到「产能与冷链」，这恰恰是 CDMO 的机会窗口。"},{"id":"n2","title":"No longer a bargain pool, Chinese biotechs command higher premiums","source":"BioSpace","url":"https://www.biospace.com/business/no-longer-a-bargain-pool-chinese-biotechs-command-higher-premiums","tag":"Glocal 中国全球化","summary":"2026 年涉及中国 biotech 的交易平均规模同比上涨 74%、平均首付款从 1.23 亿美元升至 1.67 亿美元，同时平均最低特许权使用费率从 7.1% 降到 5.5%，交易模式正从单一资产转向整体平台授权。","terms":[{"t":"command a premium","zh":"能够要到溢价／卖出高价","note":"command 在这里不是「命令」，而是「凭实力获得」。command a premium / command higher prices 是商业英语高频搭配。"},{"t":"bargain pool","zh":"廉价货源池","note":"标题用 no longer a bargain pool 一句话概括了中国资产的重定价，非常典型的财经标题写法。"},{"t":"upfront payment","zh":"首付款","note":"与 milestone payments（里程碑款）、royalties（销售分成）共同构成 deal value。媒体报道的巨额总额俗称 biobucks，水分很大。"},{"t":"royalty floor","zh":"特许权使用费下限","note":"中国 biotech 用更低的 royalty（2–3%）换取更高的现金首付，本质是「用未来换现在」。"},{"t":"Chinese biotechs increasingly accept single-digit royalties in exchange for larger upfronts.","zh":"中国生物科技公司越来越愿意接受个位数的销售分成，以换取更高的首付款。","note":"in exchange for 是描述交易结构最实用的句型。"},{"t":"patent cliff","zh":"专利悬崖","note":"大药企 2025 年起集中面临 LOE（loss of exclusivity），这是它们疯狂买中国资产的根本驱动力。"},{"t":"platform deal vs. single-asset deal","zh":"平台授权交易 vs 单一资产交易","note":"GSK-恒瑞（12 个候选药）、Lilly-Insilico 属于前者。平台交易意味着买方在分散临床风险。"},{"t":"pipeline replenishment","zh":"管线补充","note":"replenish = 重新填满。这个词组精准描述了 MNC 当下的核心焦虑。"}],"expert":"Cantor Fitzgerald 的 Li Watsek 指出「优质资产依然稀缺」，因而出现竞价；Jefferies 的 Cui Cui 认为中国 biotech 更看重现金首付而非里程碑，因为要用这笔钱推进自有管线；Evaluate 的 Puru Gaur 预计 2026 年交易数量还会增长约 20%，且平台型交易将成为主流。BD 从业者的私下判断更直接：估值上涨的真正原因不是中国资产变好了，而是买方的 patent cliff 时钟在滴答走。","subtext":"三个数字放在一起才有意义：首付涨 36%、royalty 从 7.1% 降到 5.5%、平台交易取代单资产。这说明议价权正在双向转移——中国方面拿到了更多确定性现金，MNC 则换来了长期收益分成和风险分散。换句话说，这不是「中国赢了」，而是双方各取所需的结构性再平衡。需要警惕的第二层信息是：美国国会正在推动对中美药物授权交易的联邦审查，地缘政治风险尚未被完全定价进这些交易里。"},{"id":"n3","title":"Pharmalittle: AstraZeneca reports trial setback, U.S. drug prices fall","source":"STAT News","url":"https://www.statnews.com/pharmalot/2026/08/17/astrazeneca-lung-cancer-setback-falling-drug-prices/","tag":"医保与准入","summary":"美国处方药价格出现 60 多年来最大同比跌幅（-3.1%，7 月单月 -0.8%），2026 年至今无一个月上涨；同日 AstraZeneca 因独立数据监查委员会判定「不太可能达到主要终点」而终止 volrustomig 联合化疗治疗 PD-L1 阴性非小细胞肺癌的晚期试验。","terms":[{"t":"the steepest annual decline in over 60 years","zh":"60 多年来最陡峭的同比跌幅","note":"steep 用于形容曲线陡峭；steep decline / steep discount 是财经写作标配。"},{"t":"independent data monitoring committee (IDMC)","zh":"独立数据监查委员会","note":"IDMC 建议停试验 = futility（无效性）判定，通常是试验最坏的结局之一。"},{"t":"unlikely to meet either of its primary endpoints","zh":"不太可能达到其两个主要终点中的任何一个","note":"either of its two primary endpoints 说明是共同主要终点（co-primary endpoints）设计，门槛更高。"},{"t":"Prices have not increased in any month during 2026.","zh":"2026 年内没有任何一个月出现价格上涨。","note":"用 have not ... in any month 表达「一次都没有」，比 never 更具数据感。"},{"t":"Medicare negotiations under the Inflation Reduction Act","zh":"《通胀削减法案》下的医保谈判","note":"IRA 是理解 2026 年美国药价所有变化的总开关。"},{"t":"cash prices for GLP-1 drugs","zh":"GLP-1 药物的自费价格","note":"cash-pay channel（自费渠道）绕开 PBM，是近两年最重要的商业模式变化。"},{"t":"pharmacy reimbursement","zh":"药房报销（支付）","note":"reimbursement 是准入领域第一高频词：谁付钱、付多少、什么条件下付。"},{"t":"partially offsetting the setback","zh":"部分抵消了这一挫折","note":"offset 是财报和新闻里描述「一好一坏相抵」的核心动词。"}],"expert":"价格分析师普遍提醒：这里下跌的是官方统计口径的价格指数，而不是患者实际自付额。IRA 的 MFP（maximum fair price）、Lilly 与 Novo 直接对消费者降价、以及 Medicare 药房支付方式调整，三件事叠加才造出这个数字。而临床端的 volrustomig 失败则印证了另一个共识：PD-L1 阴性人群是免疫治疗最难啃的骨头，「加化疗」这条老路已经接近收益边界。","subtext":"把两条放在一起读才是重点：一边是价格端持续承压，一边是研发端高成本试验接连失败。这正是当前大药企的双重挤压——收入天花板下移，而研发失败成本不降。由此可以推演出未来 12 个月的三个必然动作：更激进的外部引进（呼应第 2 条中国资产溢价）、更早的管线砍单（呼应裁员潮）、以及更多绕开传统支付方的直销尝试。"},{"id":"n4","title":"Amylyx speeds toward approval as GLP-1 inhibitor halves blood sugar crashes in ph. 3 win","source":"Fierce Biotech","url":"https://www.fiercebiotech.com/biotech/amylyx-speeds-toward-approval-glp-1-inhibitor-halves-blood-sugar-crashes-ph-3-win","tag":"全链条研发","summary":"Amylyx 的 GLP-1 受体拮抗剂 avexitide 在 78 例患者的 Lucidity III 期试验中将术后低血糖事件减少 55%，全部次要终点达标，公司计划年底前向 FDA 递交上市申请。","terms":[{"t":"GLP-1 receptor antagonist","zh":"GLP-1 受体拮抗剂","note":"注意与减重药的 agonist（激动剂）方向相反。antagonist / agonist / inverse agonist 必须分清。"},{"t":"post-bariatric hypoglycemia (PBH)","zh":"减重手术后低血糖","note":"bariatric = 与肥胖治疗有关的。这是个典型的 rare disease niche indication。"},{"t":"breakthrough therapy designation (BTD)","zh":"突破性疗法认定","note":"BTD 带来的是密集沟通与滚动提交，不等于优先审评（priority review），更不等于批准。"},{"t":"The compound reduced hypoglycemic events by 55% through Week 16 compared to placebo.","zh":"该化合物在第 16 周时较安慰剂将低血糖事件减少了 55%。","note":"through Week 16 / at Week 16 的时间表述在读数据时必须看准。"},{"t":"All secondary endpoints were met, with no severe adverse effects.","zh":"所有次要终点均达标，且未出现严重不良事件。","note":"adverse event (AE) / serious adverse event (SAE) / treatment-emergent AE 是安全性段落的三件套。"},{"t":"confirmatory trial","zh":"确证性试验","note":"Amylyx 的 Relyvrio 正是败在确证性试验上，被迫撤市——这是理解本条新闻情绪的背景。"},{"t":"acquired the asset for $35.1 million","zh":"以 3510 万美元收购了该资产","note":"asset = 单个在研药物。asset-centric deal 是 biotech 交易的基本单位。"},{"t":"retained its core team","zh":"保留了核心团队","note":"retain talent / retention 在裁员潮报道中反复出现。"}],"expert":"BD 圈会把这条当作教科书案例：Amylyx 在自家 ALS 药物撤市后，用 3510 万美元从 Eiger 手中抄底一个被低估的临床后期资产，两年内做成 III 期成功。行业里的评价是「公司没有救活分子，是分子救活了公司」。临床医生的关注点则不同——PBH 患者数量有限，真正的问题是诊断率低，上市后的商业化难点在于「找到病人」而不是「说服医生」。","subtext":"隐藏信息有两层。第一，它示范了当下最赚钱的一种商业模式：不做早期发现，而是在别人破产清算时低价接盘临床后期资产（asset stripping / distressed asset play）。第二，78 例患者的 III 期能支撑 NDA，说明罕见病路径的注册门槛与大适应症完全是两套逻辑——理解这一点，你才能判断一家小 biotech 的估值是否合理。"},{"id":"n5","title":"Medicare quietly gave blockbuster AbbVie drug seven extra years before price negotiations","source":"STAT News","url":"https://www.statnews.com/pharmalot/2026/08/06/medicare-gave-blockbuster-abbvie-drug-seven-extra-years-before-price-negotiations/","tag":"法规与合规","summary":"倡导组织 Public Citizen 指出，CMS 一项「几乎无人注意」的遴选标准调整，使 AbbVie 一款重磅药推迟七年才可能进入 Medicare 药价谈判名单，该组织认为此举将增加政府支出并损害患者可及性。","terms":[{"t":"a little-noticed policy shift","zh":"一项几乎没被注意到的政策调整","note":"little-noticed / under-the-radar 是调查报道里描述「暗中生效」的标准说法。"},{"t":"qualifying single source drug","zh":"符合条件的单一来源药品","note":"IRA 谈判资格的法定门槛概念：无仿制药／生物类似药竞争的独家品种。"},{"t":"small molecule vs. biologic","zh":"小分子药 vs 生物药","note":"IRA 下小分子上市满 9 年即可被选中谈判，生物药是 13 年——业界称这 4 年差距为 the pill penalty（小分子惩罚），已实质改变研发投向。"},{"t":"negotiation-eligible","zh":"具备谈判资格的","note":"-eligible 后缀在准入语境里极高频：reimbursement-eligible、rebate-eligible。"},{"t":"Public Citizen maintains the policy shift will cost the government more money and compromise patient access.","zh":"Public Citizen 坚称这一政策调整将令政府支出增加并损害患者可及性。","note":"maintain 在这里 = 「坚持主张」，比 say 更有立场感；compromise = 削弱、损害，不是「妥协」。"},{"t":"advocacy group","zh":"倡导组织／公益游说团体","note":"美国药政新闻的重要信源，立场鲜明，需要交叉验证。"},{"t":"blockbuster drug","zh":"重磅炸弹药物（年销售额超 10 亿美元）","note":"再往上是 mega-blockbuster（50 亿美元以上）。"},{"t":"seven extra years before price negotiations","zh":"在进入价格谈判前多出七年（保护期）","note":"每多一年独家定价，对一款重磅药可能就是十亿美元级的差异。"}],"expert":"药政律师的解读是：IRA 的杀伤力不在谈判本身，而在「哪一天开始计时」。CMS 对 qualifying single source drug 的口径微调，就能把一款药的谈判窗口整体后移，效果远超企业在谈判桌上的任何议价。政策观察者提醒读者注意信源立场——Public Citizen 是明确主张压低药价的倡导组织，其测算口径需要与 CMS 官方文件对照；截至报道发出，CMS 未作回应。","subtext":"这条新闻真正的价值是教会你一个思维方式：在医保准入领域，定义（definition）比价格（price）更值钱。谁能影响「什么算一个药品」「从哪天开始算独家期」，谁就掌握了几十亿美元。把这套逻辑平移到中国：国家医保谈判里的「适应症切分」「参照药品选择」「独家品种认定」，起的是完全一样的作用。这是你未来一年最该练的一块盘感。"}],"deepdive":{"title":"今日深挖 · IRA 的「9 年 / 13 年时钟」与 the pill penalty","body":"《通胀削减法案》(IRA) 规定：小分子药物上市满 9 年后可被 CMS 选入 Medicare 价格谈判，生物药则是 13 年。这 4 年的差距被业界称为 the pill penalty（小分子惩罚）。后果非常具体——同一个靶点，做成口服小分子的投资回收期比做成抗体少 4 年，于是资本自然流向生物药，而口服药恰恰是患者依从性最好、成本最低的剂型。这就是「好政策产生坏激励」的教科书案例。第 5 条新闻的深层含义正在于此：既然时钟起点可以通过定义调整，企业和监管的博弈重心就从「谈价格」变成了「谈定义」。\n\n对照中国：NRDL（国家医保药品目录）谈判没有类似的分子类型差异，但有自己的时钟——「上市时间窗口」决定能否参加当年简易续约还是重新谈判，而「适应症是否新增」直接影响降价幅度。两套制度的共同点是：规则的技术细节，比谈判现场的口才重要得多。","terms":[{"t":"the pill penalty","zh":"小分子惩罚","note":"指 IRA 对小分子药只给 9 年、对生物药给 13 年所形成的政策性歧视。"},{"t":"maximum fair price (MFP)","zh":"最高公平价格","note":"IRA 谈判后确定的 Medicare 支付上限。"},{"t":"perverse incentive","zh":"反向激励／扭曲的激励","note":"描述「政策初衷是好的，但引导出了坏行为」的标准术语。"},{"t":"simplified renewal (简易续约)","zh":"简易续约","note":"中国 NRDL 的机制，对应英文常译为 simplified renewal procedure。"}]},"ted":{"speaker":"Daniel Kahneman","title":"The riddle of experience vs. memory","event":"TED2010","duration":"约 20 分钟","embed":"https://embed.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory","page":"https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory","transcript":"https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory/transcript","why":"诺奖得主、行为经济学奠基人。他讲的「体验自我 vs 记忆自我」是所有商业判断的底层——你以为你在评估事实，其实你在评估记忆。对于要培养行业盘感的人，这是第一课：先知道自己的判断在哪里会系统性出错。语言上，Kahneman 的句子长而清晰，逻辑连接词密度高，是雅思 7 分以上做长句听力和学术表达的极好材料。","phrases":[{"t":"the experiencing self","zh":"体验自我（活在当下、逐秒感受的那个我）","note":"演讲核心概念之一。","ex":"The experiencing self lives in the present, but it has no voice in the decisions we make."},{"t":"the remembering self","zh":"记忆自我（负责讲故事、打分、下结论的那个我）","note":"演讲核心概念之一，与上者构成全篇张力。","ex":"It is the remembering self, not the experiencing self, that decides where we go on holiday next year."},{"t":"a cognitive trap","zh":"认知陷阱","note":"Kahneman 用来指那些我们明知有偏差却仍会掉进去的思维结构。","ex":"Extrapolating one strong quarter into a five-year forecast is a classic cognitive trap."},{"t":"duration neglect","zh":"时长忽视（评价一段经历时，我们几乎不考虑它持续了多久）","note":"与 the peak-end rule（峰终定律）配套出现。","ex":"Because of duration neglect, a two-week trip and a two-day trip can leave almost identical memories."},{"t":"the tyranny of the remembering self","zh":"记忆自我的专制","note":"演讲最有力的表述之一，tyranny 一词把学术观点变成了修辞武器。","ex":"We accept the tyranny of the remembering self every time we choose a story over an experience."},{"t":"We don't choose between experiences; we choose between memories of experiences.","zh":"我们并非在体验之间做选择，而是在对体验的记忆之间做选择。","note":"全篇论点句，值得整句背下来。","ex":"—"},{"t":"to confound A with B","zh":"把 A 与 B 混为一谈","note":"学术英语高频动词，比 confuse 更正式。","ex":"Investors routinely confound a good story with a good business."},{"t":"There is a lot to be said for that view.","zh":"这个看法很有道理／有不少可取之处。","note":"地道的学术让步表达，用来在反驳前先给对方留余地。","ex":"There is a lot to be said for that view, but it overlooks how the data were collected."},{"t":"by and large","zh":"总体而言、大体上","note":"口语与学术皆宜的插入语，比 generally speaking 更自然。","ex":"By and large, the regulator has been consistent on this point."},{"t":"to be at odds with","zh":"与……相矛盾／不一致","note":"描述冲突的高级搭配。","ex":"What people say they want is often at odds with what they actually choose."}],"shadow":{"segment":"建议影子跟读区间：开头 0:00–3:00（Kahneman 提出「幸福」这个词已经被用坏了，引出体验自我与记忆自我的区分）。这一段语速中等、术语少、逻辑标记词密集，适合第一天热身。","how":"① 先不看稿听 1 遍，只抓大意；② 打开 transcript 精读，标出所有连接词；③ 关掉字幕，落后半句跟读 3 遍，重点模仿他的停顿位置而非语速；④ 最后合上一切，用 60 秒英文复述这 3 分钟的内容并录音。"}}}]}</script>
+<script>
+/* ============================================================
+   BioLingua Daily — app logic
+   ============================================================ */
+const DATA = JSON.parse(document.getElementById('corpus').textContent);
+const DAYS = DATA.days.slice().sort((a,b)=> b.date.localeCompare(a.date));
+
+/* ---------- storage: localStorage w/ graceful in-memory fallback ---------- */
+const Store = (()=>{
+  let ok=false, mem={};
+  try{ const k='__bl_t'; localStorage.setItem(k,'1'); localStorage.removeItem(k); ok=true; }catch(e){ ok=false; }
+  return {
+    persistent: ok,
+    get(k,d){ try{ const v = ok? localStorage.getItem(k) : mem[k]; return v==null? d : JSON.parse(v); }catch(e){ return d; } },
+    set(k,v){ const s=JSON.stringify(v); try{ ok? localStorage.setItem(k,s) : (mem[k]=s); }catch(e){ mem[k]=s; } }
+  };
+})();
+const K_WORDS='bl_words_v1', K_NOTES='bl_notes_v1';
+let WORDS = Store.get(K_WORDS, []);
+let NOTES = Store.get(K_NOTES, {});
+const saveWords=()=>{Store.set(K_WORDS,WORDS);renderCount();};
+const saveNotes=()=>Store.set(K_NOTES,NOTES);
+
+if(!Store.persistent){
+  document.getElementById('storeWarn').innerHTML =
+    '<div class="warn"><b>提示：</b>当前环境禁用了浏览器本地存储，单词本与笔记只在本次打开期间有效。'+
+    '想长期积累，请点击「③ 回溯 · 单词本 → 导出备份」保存 JSON 文件，下次进来用「导入备份」恢复；'+
+    '或把本页另存为 HTML 文件放到自己电脑上用 Chrome 打开，那样会自动持久保存。</div>';
+}
+
+/* ---------- speech ---------- */
+const Speech = (()=>{
+  const synth = window.speechSynthesis; let voices=[], cur=null;
+  const sel=document.getElementById('voiceSel'), rate=document.getElementById('rate'), rv=document.getElementById('rateVal');
+  function load(){
+    if(!synth) return;
+    voices = synth.getVoices().filter(v=>/^en/i.test(v.lang));
+    if(!voices.length){ sel.innerHTML='<option>浏览器暂无英文语音</option>'; return; }
+    const pref = Store.get('bl_voice','');
+    sel.innerHTML = voices.map((v,i)=>`<option value="${i}">${v.name.replace(/Microsoft |Google /,'')} · ${v.lang}</option>`).join('');
+    let idx = voices.findIndex(v=>v.name===pref);
+    if(idx<0) idx = Math.max(0, voices.findIndex(v=>/en-US/i.test(v.lang)));
+    sel.value=idx; cur=voices[idx];
+  }
+  if(synth){ load(); synth.onvoiceschanged=load; }
+  sel.onchange=()=>{ cur=voices[+sel.value]; if(cur) Store.set('bl_voice',cur.name); };
+  rate.oninput=()=>{ rv.textContent=(+rate.value).toFixed(2); Store.set('bl_rate',+rate.value); };
+  const r0=Store.get('bl_rate',null); if(r0){ rate.value=r0; rv.textContent=(+r0).toFixed(2); }
+  return { say(text, btn){
+      if(!synth){ toast('此浏览器不支持语音朗读'); return; }
+      synth.cancel();
+      const u=new SpeechSynthesisUtterance(String(text).replace(/\s*\(.*?\)\s*/g,' ').trim());
+      if(cur) u.voice=cur; u.lang = cur? cur.lang : 'en-US'; u.rate=+rate.value; u.pitch=1;
+      if(btn){ document.querySelectorAll('.spk.playing').forEach(b=>b.classList.remove('playing'));
+               btn.classList.add('playing'); u.onend=u.onerror=()=>btn.classList.remove('playing'); }
+      synth.speak(u);
+  }};
+})();
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+let tt;
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1900);}
+const today=()=>new Date().toISOString().slice(0,10);
+const addDays=(d,n)=>{const x=new Date(d+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10);};
+
+/* ---------- word bank ---------- */
+function addWord(term, o={}){
+  term=String(term).trim(); if(!term) return false;
+  if(term.length>240){ toast('选中内容太长，请选短一些'); return false; }
+  if(WORDS.some(w=>w.t.toLowerCase()===term.toLowerCase())){ toast('已在单词本中'); return false; }
+  WORDS.push({t:term, zh:o.zh||'', note:o.note||'', ex:o.ex||'', src:o.src||'手动添加',
+              date:o.date||today(), added:Date.now(), star:false,
+              lvl:'new', reps:0, interval:0, due:today()});
+  saveWords(); renderVB(); renderStats();
+  toast('✓ 已加入单词本：'+(term.length>28?term.slice(0,28)+'…':term));
+  return true;
+}
+function renderCount(){document.getElementById('wcount').textContent='单词本 '+WORDS.length;}
+
+/* ---------- render: industry ---------- */
+function termLI(t, srcLabel, date){
+  const has = WORDS.some(w=>w.t.toLowerCase()===t.t.toLowerCase());
+  return `<li data-term="${esc(t.t)}" data-zh="${esc(t.zh||'')}" data-note="${esc(t.note||'')}" data-ex="${esc(t.ex||'')}" data-src="${esc(srcLabel)}" data-date="${date}">
+    <div class="tm-top">
+      <button class="spk" title="朗读">▶</button>
+      <span class="tm">${esc(t.t)}</span>
+      <button class="star ${has?'on':''}" title="加入单词本">${has?'★':'☆'}</button>
+      <span class="tm-zh">${esc(t.zh||'')}</span>
+    </div>
+    ${t.note?`<div class="tm-note">${esc(t.note)}</div>`:''}
+    ${t.ex&&t.ex!=='—'?`<div class="tm-ex">e.g. ${esc(t.ex)}</div>`:''}
+  </li>`;
+}
+
+function renderDay(d){
+  document.getElementById('dTitle').textContent = d.date + ' · ' + d.weekday;
+  document.getElementById('dTheme').textContent = d.theme;
+  document.getElementById('dHead').textContent = d.headline || '';
+
+  document.getElementById('newsList').innerHTML = d.news.map((n,i)=>`
+    <article class="card news">
+      <div class="num">${i+1}</div>
+      <h3>${esc(n.title)}</h3>
+      <div class="metaline"><span class="chip">${esc(n.tag)}</span><span>来源：<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.source)} ↗</a></span></div>
+      <div class="summary">${esc(n.summary)}</div>
+      <div class="block"><div class="lab"><i></i>必备词汇与句型</div><ul class="terms">${n.terms.map(t=>termLI(t, n.source+' · '+n.tag, d.date)).join('')}</ul></div>
+      <div class="block"><div class="lab"><i></i>同行专家怎么看</div><div class="prose">${esc(n.expert)}</div></div>
+      <div class="block"><div class="lab"><i></i>弦外之音 · 它真正想说什么</div><div class="prose subtext">${esc(n.subtext)}</div></div>
+    </article>`).join('');
+
+  const dd=d.deepdive;
+  document.getElementById('deepDive').innerHTML = dd? `
+    <article class="card">
+      <h3>${esc(dd.title)}</h3>
+      <div class="prose" style="margin-top:12px">${esc(dd.body)}</div>
+      ${dd.terms&&dd.terms.length?`<div class="block"><div class="lab"><i></i>配套词汇</div><ul class="terms">${dd.terms.map(t=>termLI(t,'深挖 · '+d.date,d.date)).join('')}</ul></div>`:''}
+    </article>`:'';
+
+  const t=d.ted;
+  document.getElementById('tedDate').textContent=d.date;
+  document.getElementById('tedCard').innerHTML = t? `
+    <div class="vidwrap"><iframe src="${esc(t.embed)}" allow="autoplay; fullscreen; encrypted-media" allowfullscreen title="TED"></iframe></div>
+    <h3>${esc(t.title)}</h3>
+    <div class="metaline"><span class="chip">${esc(t.speaker)}</span><span>${esc(t.event)}</span><span>${esc(t.duration)}</span></div>
+    <div class="linkrow">
+      <a href="${esc(t.page)}" target="_blank" rel="noopener">TED 页面 ↗</a>
+      <a href="${esc(t.transcript)}" target="_blank" rel="noopener">英文讲稿 Transcript ↗</a>
+    </div>
+    <div class="block"><div class="lab"><i></i>为什么选这一场</div><div class="prose">${esc(t.why)}</div></div>`:'<div class="empty">今日暂无 TED 内容</div>';
+
+  document.getElementById('tedPhrases').innerHTML = t? t.phrases.map(p=>termLI(p,'TED · '+t.speaker,d.date)).join('') : '';
+  document.getElementById('shadowSeg').textContent = t&&t.shadow? t.shadow.segment : '';
+  document.getElementById('shadowHow').textContent = t&&t.shadow? t.shadow.how : '';
+
+  bindNote('noteIndustry','saveIndustry', d.date+'|industry');
+  bindNote('noteTed','saveTed', d.date+'|ted');
+}
+
+function bindNote(taId, lineId, key){
+  const ta=document.getElementById(taId), line=document.getElementById(lineId);
+  ta.value = NOTES[key]||''; line.textContent = ta.value? '已保存' : '';
+  let tm; ta.oninput=()=>{ clearTimeout(tm); line.textContent='输入中…';
+    tm=setTimeout(()=>{ NOTES[key]=ta.value; saveNotes(); line.textContent='✓ 已保存 '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}); renderArchive(); },500); };
+}
+
+/* ---------- roadmap ---------- */
+(function(){
+  const wd=['周日','周一','周二','周三','周四','周五','周六'][new Date().getDay()];
+  document.getElementById('roadWeek').innerHTML = DATA.roadmap.weekly.map(r=>
+    `<div class="roadcell ${r.day===wd?'today':''}"><b>${esc(r.day)} · ${esc(r.theme)}</b><span>${esc(r.focus)}</span></div>`).join('');
+  document.getElementById('roadQ').innerHTML = DATA.roadmap.quarters.map(q=>
+    `<div class="roadcell"><b>${esc(q.q)} — ${esc(q.goal)}</b><span>${esc(q.detail)}</span></div>`).join('');
+})();
+
+/* ---------- tabs & day select ---------- */
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  b.classList.add('on'); document.getElementById('tab-'+b.dataset.tab).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(b.dataset.tab==='review'){renderVB();renderStats();renderArchive();}
+});
+const daySel=document.getElementById('daySel');
+daySel.innerHTML = DAYS.map(d=>`<option value="${d.date}">${d.date} · ${d.weekday} · ${d.theme.split(' ')[0]}</option>`).join('');
+daySel.onchange=()=>renderDay(DAYS.find(d=>d.date===daySel.value));
+
+/* ---------- click delegation: speak / star ---------- */
+document.addEventListener('click',e=>{
+  const s=e.target.closest('.spk');
+  if(s){ const li=s.closest('li'); Speech.say(li? li.dataset.term : s.dataset.text, s); return; }
+  const st=e.target.closest('.star');
+  if(st){ const li=st.closest('li');
+    if(st.classList.contains('on')){ toast('已在单词本中，可到「③ 回溯 · 单词本」管理'); return; }
+    if(addWord(li.dataset.term,{zh:li.dataset.zh,note:li.dataset.note,ex:li.dataset.ex,src:li.dataset.src,date:li.dataset.date})){
+      st.classList.add('on'); st.textContent='★'; }
+  }
+});
+
+/* ---------- right-click context menu ---------- */
+const cm=document.getElementById('cmenu'); let cmText='', cmMeta={};
+document.addEventListener('contextmenu',e=>{
+  const sel=(window.getSelection().toString()||'').trim();
+  const li=e.target.closest('.terms li');
+  if(sel){ cmText=sel; cmMeta={src:'划词 · '+(daySel.value||today()), date:daySel.value||today()}; }
+  else if(li){ cmText=li.dataset.term; cmMeta={zh:li.dataset.zh,note:li.dataset.note,ex:li.dataset.ex,src:li.dataset.src,date:li.dataset.date}; }
+  else return;
+  e.preventDefault();
+  document.getElementById('cmHd').textContent = cmText.length>34? cmText.slice(0,34)+'…' : cmText;
+  cm.style.display='block';
+  const w=cm.offsetWidth||200,h=cm.offsetHeight||140;
+  cm.style.left=Math.min(e.clientX, innerWidth-w-10)+'px';
+  cm.style.top=Math.min(e.clientY, innerHeight-h-10)+'px';
+});
+document.addEventListener('click',()=>cm.style.display='none');
+document.addEventListener('scroll',()=>cm.style.display='none',true);
+document.getElementById('cmAdd').onclick=()=>{ if(addWord(cmText,cmMeta)) refreshStars(); };
+document.getElementById('cmSpeak').onclick=()=>Speech.say(cmText);
+document.getElementById('cmCopy').onclick=()=>{ navigator.clipboard&&navigator.clipboard.writeText(cmText); toast('已复制'); };
+function refreshStars(){
+  document.querySelectorAll('.terms li').forEach(li=>{
+    const b=li.querySelector('.star'); if(!b) return;
+    const has=WORDS.some(w=>w.t.toLowerCase()===li.dataset.term.toLowerCase());
+    b.classList.toggle('on',has); b.textContent=has?'★':'☆';
+  });
+}
+
+/* ---------- word bank render ---------- */
+const lvlLabel={new:['n','新词'],learning:['l','学习中'],mastered:['m','已掌握']};
+function filtered(){
+  const q=document.getElementById('vSearch').value.trim().toLowerCase();
+  const src=document.getElementById('vSrc').value, lvl=document.getElementById('vLvl').value, sort=document.getElementById('vSort').value;
+  let a=WORDS.filter(w=>(!q||(w.t+w.zh+w.note+w.ex).toLowerCase().includes(q))&&(!src||w.src===src)&&(!lvl||w.lvl===lvl));
+  if(sort==='alpha') a.sort((x,y)=>x.t.toLowerCase().localeCompare(y.t.toLowerCase()));
+  else if(sort==='due') a.sort((x,y)=>(x.due||'').localeCompare(y.due||''));
+  else a.sort((x,y)=>y.added-x.added);
+  return a;
+}
+function renderVB(){
+  const srcSel=document.getElementById('vSrc'), keep=srcSel.value;
+  const srcs=[...new Set(WORDS.map(w=>w.src))].sort();
+  srcSel.innerHTML='<option value="">全部来源</option>'+srcs.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');
+  if(srcs.includes(keep)) srcSel.value=keep;
+  const a=filtered(), wrap=document.getElementById('vbWrap');
+  if(!WORDS.length){ wrap.innerHTML='<div class="empty">单词本还是空的。<br>在「① 行业精读」或「② TED」里点 ☆，或右键任意词条 / 选中任意文本加入。</div>'; renderCount(); return; }
+  if(!a.length){ wrap.innerHTML='<div class="empty">没有符合条件的词。</div>'; return; }
+  wrap.innerHTML=`<div style="overflow-x:auto"><table class="vb"><thead><tr>
+    <th style="width:34px"></th><th>词条</th><th style="width:28%">释义 / 备注</th><th style="width:110px">来源</th>
+    <th style="width:76px">熟练度</th><th style="width:88px">下次复习</th><th style="width:58px"></th></tr></thead><tbody>${
+    a.map(w=>{const i=WORDS.indexOf(w);const L=lvlLabel[w.lvl]||lvlLabel.new;return `<tr>
+      <td><button class="spk" data-text="${esc(w.t)}">▶</button></td>
+      <td><b>${esc(w.t)}</b>${w.ex&&w.ex!=='—'?`<div class="tm-ex" style="margin-top:3px">e.g. ${esc(w.ex)}</div>`:''}</td>
+      <td><span style="color:var(--ink-soft)">${esc(w.zh)}</span>${w.note?`<div class="tm-note" style="margin-top:3px">${esc(w.note)}</div>`:''}</td>
+      <td style="font-size:12px;color:var(--ink-mute)">${esc(w.src)}</td>
+      <td><span class="lvl ${L[0]}">${L[1]}</span></td>
+      <td style="font-size:12.5px;color:${(w.due||'')<=today()?'var(--pink-500)':'var(--ink-mute)'}">${esc(w.due||'-')}</td>
+      <td style="white-space:nowrap"><button class="star ${w.star?'on':''}" data-i="${i}" data-act="star" title="加星">${w.star?'★':'☆'}</button><button class="star" data-i="${i}" data-act="del" title="删除" style="color:var(--pink-200);font-size:13px">✕</button></td>
+    </tr>`;}).join('')}</tbody></table></div>`;
+  wrap.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;
+    if(b.dataset.act==='star'){WORDS[i].star=!WORDS[i].star;}
+    else{ if(!confirm('从单词本中删除「'+WORDS[i].t+'」？')) return; WORDS.splice(i,1); }
+    saveWords(); renderVB(); renderStats(); refreshStars();
+  });
+  renderCount();
+}
+['vSearch','vSrc','vLvl','vSort'].forEach(id=>{const el=document.getElementById(id);el.oninput=el.onchange=renderVB;});
+
+function dueList(){ const t=today(); return WORDS.filter(w=>(w.due||t)<=t); }
+function renderStats(){
+  const m=WORDS.filter(w=>w.lvl==='mastered').length, l=WORDS.filter(w=>w.lvl==='learning').length;
+  const days=new Set(WORDS.map(w=>w.date)).size;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><b>${WORDS.length}</b><span>词条总数</span></div>
+    <div class="stat"><b>${dueList().length}</b><span>今日到期</span></div>
+    <div class="stat"><b>${l}</b><span>学习中</span></div>
+    <div class="stat"><b>${m}</b><span>已掌握</span></div>
+    <div class="stat"><b>${DAYS.length}</b><span>已更新天数</span></div>
+    <div class="stat"><b>${days}</b><span>有收词的天数</span></div>`;
+  document.getElementById('dueN').textContent=dueList().length;
+}
+function renderArchive(){
+  document.getElementById('archive').innerHTML = DAYS.map(d=>{
+    const n1=NOTES[d.date+'|industry']||'', n2=NOTES[d.date+'|ted']||'';
+    const wc=WORDS.filter(w=>w.date===d.date).length;
+    const joined=[n1,n2].map(s=>s.trim()).filter(Boolean).join(' ／ ');
+    const prev=joined? esc(joined) : '<span style="color:var(--pink-300)">这天还没写感悟</span>';
+    return `<div class="arch" data-d="${d.date}">
+      <div class="d"><b>${d.date.slice(8)}</b><span>${d.date.slice(0,7)}</span></div>
+      <div class="c"><b>${esc(d.theme)}</b> <span style="font-size:12px;color:var(--ink-mute)">· 收词 ${wc}</span>
+      <p>${prev}</p></div></div>`;
+  }).join('') || '<div class="empty">暂无历史</div>';
+  document.querySelectorAll('.arch').forEach(el=>el.onclick=()=>{
+    daySel.value=el.dataset.d; renderDay(DAYS.find(d=>d.date===el.dataset.d));
+    document.querySelector('nav.tabs button[data-tab=industry]').click();
+  });
+}
+
+/* ---------- export / import ---------- */
+document.getElementById('btnExport').onclick=()=>{
+  const blob=new Blob([JSON.stringify({v:1,exported:new Date().toISOString(),words:WORDS,notes:NOTES},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='biolingua-backup-'+today()+'.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000); toast('已导出备份');
+};
+document.getElementById('btnImport').onclick=()=>document.getElementById('fileIn').click();
+document.getElementById('fileIn').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return; const r=new FileReader();
+  r.onload=()=>{ try{
+      const j=JSON.parse(r.result); let added=0;
+      (j.words||[]).forEach(w=>{ if(!WORDS.some(x=>x.t.toLowerCase()===w.t.toLowerCase())){WORDS.push(w);added++;} });
+      Object.assign(NOTES, j.notes||{});
+      saveWords(); saveNotes(); renderVB(); renderStats(); renderArchive(); refreshStars();
+      toast('导入完成，新增 '+added+' 个词条');
+    }catch(err){ toast('文件格式不正确'); } };
+  r.readAsText(f); e.target.value='';
+};
+
+/* ---------- flashcards (SM-2 lite) ---------- */
+let Q=[],qi=0;
+function startReview(list,label){
+  if(!list.length){ toast('没有需要复习的词'); return; }
+  Q=list.slice().sort(()=>Math.random()-0.5); qi=0;
+  document.getElementById('fcBack').classList.add('on'); showCard(label);
+}
+function showCard(label){
+  const fc=document.getElementById('fc');
+  if(qi>=Q.length){ closeFC(); toast('🎉 复习完成，共 '+Q.length+' 词'); return; }
+  const w=Q[qi]; fc.classList.remove('rev');
+  document.getElementById('fcProg').textContent=(label||'复习')+' · '+(qi+1)+' / '+Q.length;
+  document.getElementById('fcQ').textContent=w.t;
+  document.getElementById('fcA').innerHTML=`<b>${esc(w.zh||'（未填释义）')}</b>${w.note?'<div style="margin-top:8px">'+esc(w.note)+'</div>':''}${w.ex&&w.ex!=='—'?'<div style="margin-top:8px;font-style:italic;color:var(--sky)">e.g. '+esc(w.ex)+'</div>':''}<div style="margin-top:10px;font-size:12px;color:var(--ink-mute)">来源：'+esc(w.src)+' · '+esc(w.date)+'</div>`;
+  document.getElementById('fcActs').innerHTML=`<button class="btn solid" id="fcShow">显示释义（空格）</button><button class="btn ghost" id="fcClose">退出</button>`;
+  document.getElementById('fcShow').onclick=reveal;
+  document.getElementById('fcClose').onclick=closeFC;
+  document.getElementById('fcSpeak').onclick=()=>Speech.say(w.t);
+  Speech.say(w.t);
+}
+function reveal(){
+  document.getElementById('fc').classList.add('rev');
+  document.getElementById('fcActs').innerHTML=
+    `<button class="btn" data-g="0">不认识</button><button class="btn" data-g="1">模糊</button><button class="btn solid" data-g="2">认识</button>`;
+  document.getElementById('fcActs').querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>grade(+b.dataset.g));
+}
+function grade(g){
+  const w=Q[qi], real=WORDS.find(x=>x.t===w.t)||w;
+  real.reps=(real.reps||0)+1;
+  if(g===0){ real.interval=0; real.lvl='new'; Q.push(real); }
+  else if(g===1){ real.interval=1; real.lvl='learning'; }
+  else{ real.interval = real.interval? Math.min(Math.round(real.interval*2.2),180) : 2;
+        real.lvl = real.interval>=21? 'mastered' : 'learning'; }
+  real.due = addDays(today(), Math.max(real.interval,0));
+  saveWords(); qi++; showCard();
+}
+function closeFC(){ document.getElementById('fcBack').classList.remove('on'); renderVB(); renderStats(); }
+document.getElementById('btnDue').onclick=()=>startReview(dueList(),'今日到期');
+document.getElementById('btnAll').onclick=()=>startReview(WORDS,'全部');
+document.getElementById('btnStar').onclick=()=>startReview(WORDS.filter(w=>w.star),'加星');
+document.getElementById('fcBack').onclick=e=>{if(e.target.id==='fcBack')closeFC();};
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('fcBack').classList.contains('on'))return;
+  if(e.key==='Escape')closeFC();
+  else if(e.key===' '){e.preventDefault(); document.getElementById('fc').classList.contains('rev')?null:reveal();}
+  else if(document.getElementById('fc').classList.contains('rev')&&['1','2','3'].includes(e.key)) grade(+e.key-1);
+});
+
+/* ---------- boot ---------- */
+renderDay(DAYS[0]); renderCount(); renderVB(); renderStats(); renderArchive();
+</script>
+</body>
+</html>
